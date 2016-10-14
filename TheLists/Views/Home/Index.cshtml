@@ -1,0 +1,93 @@
+﻿<!-- to-do Grid Section -->
+@model List<TheLists.TestModel.List>
+<section id="to-do" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">My List</h2>
+                <h3 class="section-subheading text-muted">The Full List is HERE</h3>
+            </div>
+        </div>
+        <div class="row" id="listRes">
+
+            @foreach(var item in Model){ 
+                <div class="col-md-3 col-sm-6 to-do-item">
+                    <div class="to-do-caption" style="border-top:20px solid #000;">
+                        <h4>@item.listTitulo</h4>
+                        <p class="text-muted">Short Desc.</p>
+                        <div class="clearfix"></div>
+                        <br />
+                    
+                        <i class="fa fa-check" aria-hidden="true"></i><!--Completo-->
+                        <i class="fa fa-calendar" aria-hidden="true"></i><!--Em Tempo-->
+                        <i class="fa fa-calendar" aria-hidden="true" style="color:#F00;"></i><!--Atrasado-->
+                        <i class="fa fa-star-o" aria-hidden="true"></i><!--Não Prioridade-->
+                        <i class="fa fa-star" aria-hidden="true"></i><!--Prioridade-->
+                        <i class="fa fa-times" aria-hidden="true"></i><!-- Excluir-->
+
+
+                        <p class="text-muted pull-left" style="margin-right:20px;">11/10/1993</p>
+                    
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" style="background-image:none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">New Item</h2>
+                <h3 class="section-subheading text-muted">Insert a new Item</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                @using( Html.BeginForm( "Cadastro", "Home", FormMethod.Post, new { id = "cadastroLista", onsubmit = "sendForm(); return false;" } ) )
+                {
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Tarefa *" id="tarefa" name="tarefa">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Descrição *" id="descricao" name="descricao"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-xl">Send</button>
+                        </div>
+                    </div>
+                }
+                <script>
+                    function sendForm(){
+                        $.ajax({
+                            type: "POST",
+                            url: $("#cadastroLista").attr("action"),
+                            data: $("#cadastroLista").serialize(),
+                            dataType: 'json',
+                            processData: true,
+                            success: function (data) {
+                                console.log(data);
+                                $("#listRes").html(data);
+                            }
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</section>
+

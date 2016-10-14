@@ -1,0 +1,5 @@
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Model\bin\Debug\TheList.Model.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Model\bin\Debug\TheList.Model.pdb
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Model\obj\Debug\TheList.Model.csprojResolveAssemblyReference.cache
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Model\obj\Debug\TheList.Model.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Model\obj\Debug\TheList.Model.pdb

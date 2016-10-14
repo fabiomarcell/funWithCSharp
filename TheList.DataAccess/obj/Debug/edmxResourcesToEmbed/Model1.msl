@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="checklistModelStoreContainer" CdmEntityContainer="checklistEntities">
+    <EntitySetMapping Name="tblList">
+      <EntityTypeMapping TypeName="checklistModel.tblList">
+        <MappingFragment StoreEntitySet="tblList">
+          <ScalarProperty Name="listID" ColumnName="listID" />
+          <ScalarProperty Name="listTipoID" ColumnName="listTipoID" />
+          <ScalarProperty Name="listTitulo" ColumnName="listTitulo" />
+          <ScalarProperty Name="listDescricao" ColumnName="listDescricao" />
+          <ScalarProperty Name="listPrioridade" ColumnName="listPrioridade" />
+          <ScalarProperty Name="listStatus" ColumnName="listStatus" />
+          <ScalarProperty Name="listLimitePrevisto" ColumnName="listLimitePrevisto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblListTipo">
+      <EntityTypeMapping TypeName="checklistModel.tblListTipo">
+        <MappingFragment StoreEntitySet="tblListTipo">
+          <ScalarProperty Name="listTipoID" ColumnName="listTipoID" />
+          <ScalarProperty Name="listTipoNome" ColumnName="listTipoNome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

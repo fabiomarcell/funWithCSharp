@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="checklistModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblList">
+          <Key>
+            <PropertyRef Name="listID" />
+          </Key>
+          <Property Name="listID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="listTipoID" Type="int" />
+          <Property Name="listTitulo" Type="varchar" MaxLength="100" />
+          <Property Name="listDescricao" Type="varchar" MaxLength="200" />
+          <Property Name="listPrioridade" Type="int" />
+          <Property Name="listStatus" Type="int" />
+          <Property Name="listLimitePrevisto" Type="date" />
+        </EntityType>
+        <EntityType Name="tblListTipo">
+          <Key>
+            <PropertyRef Name="listTipoID" />
+          </Key>
+          <Property Name="listTipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="listTipoNome" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__tblList__listTip__286302EC">
+          <End Role="tblListTipo" Type="Self.tblListTipo" Multiplicity="0..1" />
+          <End Role="tblList" Type="Self.tblList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblListTipo">
+              <PropertyRef Name="listTipoID" />
+            </Principal>
+            <Dependent Role="tblList">
+              <PropertyRef Name="listTipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="checklistModelStoreContainer">
+          <EntitySet Name="tblList" EntityType="Self.tblList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblListTipo" EntityType="Self.tblListTipo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblList__listTip__286302EC" Association="Self.FK__tblList__listTip__286302EC">
+            <End Role="tblListTipo" EntitySet="tblListTipo" />
+            <End Role="tblList" EntitySet="tblList" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="checklistModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblList">
+          <Key>
+            <PropertyRef Name="listID" />
+          </Key>
+          <Property Name="listID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="listTipoID" Type="Int32" />
+          <Property Name="listTitulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="listDescricao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="listPrioridade" Type="Int32" />
+          <Property Name="listStatus" Type="Int32" />
+          <Property Name="listLimitePrevisto" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblListTipo" Relationship="Self.FK__tblList__listTip__286302EC" FromRole="tblList" ToRole="tblListTipo" />
+        </EntityType>
+        <EntityType Name="tblListTipo">
+          <Key>
+            <PropertyRef Name="listTipoID" />
+          </Key>
+          <Property Name="listTipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="listTipoNome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblList" Relationship="Self.FK__tblList__listTip__286302EC" FromRole="tblListTipo" ToRole="tblList" />
+        </EntityType>
+        <Association Name="FK__tblList__listTip__286302EC">
+          <End Role="tblListTipo" Type="Self.tblListTipo" Multiplicity="0..1" />
+          <End Role="tblList" Type="Self.tblList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblListTipo">
+              <PropertyRef Name="listTipoID" />
+            </Principal>
+            <Dependent Role="tblList">
+              <PropertyRef Name="listTipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="checklistEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblList" EntityType="Self.tblList" />
+          <EntitySet Name="tblListTipo" EntityType="Self.tblListTipo" />
+          <AssociationSet Name="FK__tblList__listTip__286302EC" Association="Self.FK__tblList__listTip__286302EC">
+            <End Role="tblListTipo" EntitySet="tblListTipo" />
+            <End Role="tblList" EntitySet="tblList" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="checklistModelStoreContainer" CdmEntityContainer="checklistEntities">
+          <EntitySetMapping Name="tblList">
+            <EntityTypeMapping TypeName="checklistModel.tblList">
+              <MappingFragment StoreEntitySet="tblList">
+                <ScalarProperty Name="listID" ColumnName="listID" />
+                <ScalarProperty Name="listTipoID" ColumnName="listTipoID" />
+                <ScalarProperty Name="listTitulo" ColumnName="listTitulo" />
+                <ScalarProperty Name="listDescricao" ColumnName="listDescricao" />
+                <ScalarProperty Name="listPrioridade" ColumnName="listPrioridade" />
+                <ScalarProperty Name="listStatus" ColumnName="listStatus" />
+                <ScalarProperty Name="listLimitePrevisto" ColumnName="listLimitePrevisto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblListTipo">
+            <EntityTypeMapping TypeName="checklistModel.tblListTipo">
+              <MappingFragment StoreEntitySet="tblListTipo">
+                <ScalarProperty Name="listTipoID" ColumnName="listTipoID" />
+                <ScalarProperty Name="listTipoNome" ColumnName="listTipoNome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

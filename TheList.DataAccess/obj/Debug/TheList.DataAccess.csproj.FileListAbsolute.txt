@@ -1,0 +1,10 @@
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\bin\Debug\TheList.DataAccess.dll.config
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\bin\Debug\TheList.DataAccess.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\bin\Debug\TheList.DataAccess.pdb
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\obj\Debug\TheList.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\obj\Debug\TheList.DataAccess.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.DataAccess\obj\Debug\TheList.DataAccess.pdb

@@ -1,0 +1,14 @@
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\TheList.Repository.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\TheList.Repository.pdb
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\TheList.DataAccess.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\EntityFramework.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\TheList.DataAccess.pdb
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\EntityFramework.xml
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\obj\Debug\TheList.Repository.csprojResolveAssemblyReference.cache
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\obj\Debug\TheList.Repository.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\obj\Debug\TheList.Repository.pdb
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\TheList.Model.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\TheList.Model.pdb
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fabio Marcell\Desktop\TheLists\TheList.Repository\bin\Debug\TheList.Repository.dll.config

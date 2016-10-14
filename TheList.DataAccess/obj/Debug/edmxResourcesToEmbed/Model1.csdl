@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="checklistModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblList">
+    <Key>
+      <PropertyRef Name="listID" />
+    </Key>
+    <Property Name="listID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="listTipoID" Type="Int32" />
+    <Property Name="listTitulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="listDescricao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="listPrioridade" Type="Int32" />
+    <Property Name="listStatus" Type="Int32" />
+    <Property Name="listLimitePrevisto" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tblListTipo" Relationship="Self.FK__tblList__listTip__286302EC" FromRole="tblList" ToRole="tblListTipo" />
+  </EntityType>
+  <EntityType Name="tblListTipo">
+    <Key>
+      <PropertyRef Name="listTipoID" />
+    </Key>
+    <Property Name="listTipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="listTipoNome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblList" Relationship="Self.FK__tblList__listTip__286302EC" FromRole="tblListTipo" ToRole="tblList" />
+  </EntityType>
+  <Association Name="FK__tblList__listTip__286302EC">
+    <End Role="tblListTipo" Type="Self.tblListTipo" Multiplicity="0..1" />
+    <End Role="tblList" Type="Self.tblList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblListTipo">
+        <PropertyRef Name="listTipoID" />
+      </Principal>
+      <Dependent Role="tblList">
+        <PropertyRef Name="listTipoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="checklistEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblList" EntityType="Self.tblList" />
+    <EntitySet Name="tblListTipo" EntityType="Self.tblListTipo" />
+    <AssociationSet Name="FK__tblList__listTip__286302EC" Association="Self.FK__tblList__listTip__286302EC">
+      <End Role="tblListTipo" EntitySet="tblListTipo" />
+      <End Role="tblList" EntitySet="tblList" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
