@@ -10,27 +10,7 @@
         </div>
         <div class="row" id="listRes">
 
-            @foreach(var item in Model){ 
-                <div class="col-md-3 col-sm-6 to-do-item">
-                    <div class="to-do-caption" style="border-top:20px solid #000;">
-                        <h4>@item.listTitulo</h4>
-                        <p class="text-muted">Short Desc.</p>
-                        <div class="clearfix"></div>
-                        <br />
-                    
-                        <i class="fa fa-check" aria-hidden="true"></i><!--Completo-->
-                        <i class="fa fa-calendar" aria-hidden="true"></i><!--Em Tempo-->
-                        <i class="fa fa-calendar" aria-hidden="true" style="color:#F00;"></i><!--Atrasado-->
-                        <i class="fa fa-star-o" aria-hidden="true"></i><!--Não Prioridade-->
-                        <i class="fa fa-star" aria-hidden="true"></i><!--Prioridade-->
-                        <i class="fa fa-times" aria-hidden="true"></i><!-- Excluir-->
-
-
-                        <p class="text-muted pull-left" style="margin-right:20px;">11/10/1993</p>
-                    
-                    </div>
-                </div>
-            }
+            <!-- The Foreach -->
 
 
         </div>
@@ -80,11 +60,32 @@
                             dataType: 'json',
                             processData: true,
                             success: function (data) {
-                                console.log(data);
-                                $("#listRes").html(data);
+                                //console.log(data);
+                                if(data){
+                                    $("#listRes").html(data.html);
+                                }
                             }
+                            
                         });
                     }
+                    function loadList() {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/Listar",
+                            dataType: 'json',
+                            processData: true,
+                            success: function (data) {
+                                //console.log(data);
+                                if (data) {
+                                    $("#listRes").html(data.html);
+                                }
+                            }
+
+                        });
+                    }
+                    window.onload = function () {
+                        loadList();
+                    };
                 </script>
             </div>
         </div>
