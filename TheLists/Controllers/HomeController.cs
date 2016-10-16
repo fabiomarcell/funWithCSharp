@@ -108,17 +108,18 @@ namespace TheLists.Controllers
                         "<p class='text-muted'>" + ( item.listDescricao == "" ? "Desc." : item.listDescricao ) + "</p>" +
                         "<div class='clearfix'></div>" +
                         "<br />" +
-
+                        "<hr>" +
+                        "<p class='text-muted pull-center' style='margin-right:20px;'>" +  showDate + "</p>" +
+                        "<div class='clearfix'></div>" +
+                        "<hr>"+
                         "<i class='fa fa-check' aria-hidden='true'></i><!--Completo-->" +
                         "<i class='fa fa-calendar' aria-hidden='true'></i><!--Em Tempo-->" +
                         "<i class='fa fa-calendar' aria-hidden='true' style='color:#F00;'></i><!--Atrasado-->" +
                         "<i class='fa fa-star-o' aria-hidden='true'></i><!--Não Prioridade-->" +
                         "<i class='fa fa-star' aria-hidden='true'></i><!--Prioridade-->" +
 
-
-
-                        "<p class='text-muted pull-left' style='margin-right:20px;'>" +  showDate + "</p>" +
-
+                        "<div class='clearfix'></div>" +
+                        
                     "</div>" +
                 "</div>";
                 x++;

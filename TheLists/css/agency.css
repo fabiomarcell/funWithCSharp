@@ -209,7 +209,7 @@ fieldset[disabled] .btn-xl.active {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 400;
     letter-spacing: 1px;
-    color: #fff;
+    color: #31708f;
 }
 
 .navbar-default .nav li a:hover,
@@ -864,4 +864,10 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: #fed136;
+}
+
+.fa {
+    cursor:pointer; 
+    float:right; 
+    font-size:25px !important;
 }
