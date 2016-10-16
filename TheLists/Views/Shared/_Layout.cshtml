@@ -102,7 +102,12 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="~/js/agency.js"></script>
-
+        <script src="~/js/jquery.mask.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataLimite').mask('00/00/0000', { clearIfNotMatch: true, placeholder: "__/__/____" });
+            });
+        </script>
     </body>
 
 </html>    

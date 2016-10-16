@@ -9,7 +9,7 @@ namespace TheList.Repository.Contracts {
     public interface IListRepository<TEntity> where TEntity : class {
         Boolean cadastrar( ListModel list );
         Boolean alterar( ListModel list);
-        Boolean excluir( ListModel list);
+        Boolean excluir( Int32 ID);
         IEnumerable<ListModel> listarTodos( );
     }
 }
