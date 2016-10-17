@@ -66,29 +66,71 @@ namespace TheLists.Controllers
 
             ListRepository listRep = new ListRepository( );
             listRep.excluir( Int32.Parse( Request[ "ID" ] ) ); ;
+            Int32 rebuild = 0;
+            if( Request[ "rebuild" ] != null ) {
+                rebuild = 1;
+            }
+
+            return Listar( Int32.Parse( Request[ "page" ] ), Int32.Parse( Request[ "itens" ] ), rebuild);
+        }
+
+        [HttpPost]
+        public String Complete( ) {
+
+            ListRepository listRep = new ListRepository( );
+            listRep.complete( Int32.Parse( Request[ "ID" ] ) ); ;
 
 
-            return Listar( );
+            return Listar();
         }
 
 
         [HttpPost]
-        public String Listar( ) {
+        public String Listar(Int32 page = 1, Int32 itens = 4, Int32 rebuild = 0) {
             ListRepository listRep = new ListRepository( );
 
             List<List> list = new List<List>( );
-
-            foreach( var item in listRep.listarTodos( ) ) {
-                list.Add( new List( ) { listTitulo = item.listTitulo, listDescricao = item.listDescricao } );
-            }
-
+            
             String HTML = "";
             Int32 x = 0;
-            foreach( var item in listRep.listarTodos( ) ) {
+
+            //Int32.Parse(Request["page"]);
+            //Int32.Parse(Request["itens"]);
+
+            if(Request["page"] != null){
+                page = Int32.Parse( Request[ "page" ] ); ;
+            }
+
+            if(Request["itens"] != null){
+                itens = Int32.Parse( Request[ "itens" ] ); ;
+            }
+
+
+            var All = listRep.listarTodos( page, itens );
+            if(rebuild != 0){
+                All = listRep.listarTodos( 1, itens * (page - 1) );
+            }
+            
+
+            foreach( var item in All ) {
                 String showDate = item.listLimitePrevisto.ToString( "dd/MM/yyyy" );
                 String priority = "";
+                String isLate = "";
+
+                
                 if(item.listLimitePrevisto.ToString( "dd/MM/yyyy" ) == "01/01/0001") {
                     showDate = "-";
+                    isLate = "";
+                }
+                else {
+                    if( item.listLimitePrevisto > DateTime.Now ) {
+                        isLate = "<i class='fa fa-calendar' aria-hidden='true'></i><!--Em Tempo-->";
+                    }
+                    else {
+                        isLate =
+                        "<i class='fa fa-calendar' aria-hidden='true' style='color:#F00;'></i><!--Atrasado-->";
+                    }
+
                 }
 
                 if( item.listPrioridade == 0 ) {
@@ -100,10 +142,11 @@ namespace TheLists.Controllers
                 else if( item.listPrioridade == 2 ) {
                     priority = "#1e6307";
                 }
+
                 HTML += "<div class='col-md-3 col-sm-6 to-do-item'>" +
                     "<div onclick=\"excluirLista('" + item.listID + "');\"><i class='fa fa-times' aria-hidden='true' style='cursor:pointer; float:right; font-size:25px;'></i><!-- Excluir--></div>" +
                     "<div class='clearfix'></div>" +
-                    "<div class='to-do-caption' style='border-top:20px solid " + priority + ";'>" +
+                    "<div class='to-do-caption' style='border-top:20px solid " + priority + "; box-shadow: 0px 5px 15px #000;' >" +
                         "<h4>" + item.listTitulo + "</h4>" +
                         "<p class='text-muted'>" + ( item.listDescricao == "" ? "Desc." : item.listDescricao ) + "</p>" +
                         "<div class='clearfix'></div>" +
@@ -112,23 +155,27 @@ namespace TheLists.Controllers
                         "<p class='text-muted pull-center' style='margin-right:20px;'>" +  showDate + "</p>" +
                         "<div class='clearfix'></div>" +
                         "<hr>"+
-                        "<i class='fa fa-check' aria-hidden='true'></i><!--Completo-->" +
-                        "<i class='fa fa-calendar' aria-hidden='true'></i><!--Em Tempo-->" +
-                        "<i class='fa fa-calendar' aria-hidden='true' style='color:#F00;'></i><!--Atrasado-->" +
-                        "<i class='fa fa-star-o' aria-hidden='true'></i><!--Não Prioridade-->" +
-                        "<i class='fa fa-star' aria-hidden='true'></i><!--Prioridade-->" +
-
+                        "<i class='fa fa-check' aria-hidden='true' onclick=\"setAsComplete('" + item.listID + "');\"></i><!--Completo-->" +
+                        isLate +
                         "<div class='clearfix'></div>" +
                         
                     "</div>" +
                 "</div>";
                 x++;
+
                 if(x == 4){
                     x = 0;
                     HTML += "<div class='clearfix'></div>";
                 }
             }
-            return new JavaScriptSerializer( ).Serialize( new { html = HTML, status = "true" } );
+            return new JavaScriptSerializer( ).Serialize( 
+                new { 
+                    html = HTML, 
+                    status = "true", 
+                    totalItens = All.Count(),
+                    page = page + 1
+                } 
+            );
         }
     }
 }

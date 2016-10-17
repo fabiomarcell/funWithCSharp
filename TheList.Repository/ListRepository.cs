@@ -60,12 +60,12 @@ namespace TheList.Repository {
             return true;
         }
 
-        public Boolean excluir( Int32 ID) {
+        public Boolean excluir( Int32 ID ) {
             try {
                 using( var con = new checklistEntities( ) ) {
                     //busca no banco e transforma em obj
                     var BDList = con.tblList.FirstOrDefault( x => x.listID == ID );
-                    
+
                     //remove
                     con.tblList.Remove( BDList );
                     //aplica alteração
@@ -78,12 +78,33 @@ namespace TheList.Repository {
             return true;
         }
 
-        public IEnumerable<ListModel> listarTodos( ) {
+        public Boolean complete( Int32 ID ) {
+            try {
+                using( var con = new checklistEntities( ) ) {
+                    var BDList = con.tblList.FirstOrDefault( x => x.listID == ID );
+                    BDList.listStatus = 1;
+                    BDList.listID = ID;
+
+                    con.Entry( BDList ).State = System.Data.Entity.EntityState.Modified;
+                    con.SaveChanges( );
+                }
+            }
+            catch( Exception ) {
+                return false;
+            }
+            return true;
+        }
+
+        public IEnumerable<ListModel> listarTodos( Int32 page = 1, Int32 itens = 8) {
             List<ListModel> list = new List<ListModel>( );
             try {
                 using( var con = new checklistEntities( ) ) {
-                    var query = from TBL in con.tblList select TBL;
-                    foreach( var item in query ) {
+                    var query = from TBL in con.tblList
+                                where TBL.listStatus != 1
+                                orderby TBL.listPrioridade ascending, TBL.listLimitePrevisto ?? DateTime.MaxValue ascending
+                                select TBL;
+
+                    foreach( var item in query.Skip( ( page - 1 ) * itens ).Take( itens ) ) {
                         list.Add( new ListModel( ) { 
                             listID = item.listID,
                             listTitulo = item.listTitulo,

@@ -870,4 +870,5 @@ body {
     cursor:pointer; 
     float:right; 
     font-size:25px !important;
+    margin-left: 30px;
 }

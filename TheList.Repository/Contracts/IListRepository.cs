@@ -10,6 +10,7 @@ namespace TheList.Repository.Contracts {
         Boolean cadastrar( ListModel list );
         Boolean alterar( ListModel list);
         Boolean excluir( Int32 ID);
-        IEnumerable<ListModel> listarTodos( );
+        Boolean complete( Int32 ID );
+        IEnumerable<ListModel> listarTodos( Int32 page = 1, Int32 itens = 8);
     }
 }
